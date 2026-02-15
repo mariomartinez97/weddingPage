@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery — Maria Paula & Mario Miguel</title>
+  <meta name="description" content="Wedding website for Maria Paula & Mario Miguel — Ecuador 2026" />
+  <style>
+
+    :root {
+      --primary: #9B966A;
+      --ink: #2F2E23;
+      --cream: #F7F6EF;
+      --muted: #6A684F;
+      --border: #D7D3B8;
+      --highlight: #D8D2A2;
+      --shadow: 0 16px 40px rgba(0, 0, 0, .10);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --maxw: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top announcement bar */
+    .topbar {
+      background: var(--primary);
+      color: rgba(255, 255, 255, .92);
+      padding: 10px 16px;
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+
+    .topbar .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    /* Header */
+    header {
+      background: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(255, 255, 255, .16);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand .names {
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .brand .meta {
+      font-size: 12px;
+      opacity: .9;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlinks button {
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .12);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+
+    .navlinks button:hover {
+      background: rgba(255, 255, 255, .18);
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--primary);
+      color: white;
+      padding: 56px 16px 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle texture using gradients in the same hue family */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 380px at 15% 15%, rgba(255, 255, 255, .18), transparent 60%),
+        radial-gradient(760px 320px at 85% 20%, rgba(255, 255, 255, .10), transparent 60%),
+        radial-gradient(640px 280px at 70% 90%, rgba(0, 0, 0, .10), transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero .wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3.5vw, 40px);
+      line-height: 1.1;
+      letter-spacing: .2px;
+    }
+
+    @media (min-width: 600px) {
+      .hero h1 {
+        white-space: nowrap;
+      }
+    }
+
+
+    .hero .subtitle {
+      font-size: 16px;
+      opacity: .95;
+      margin-bottom: 18px;
+    }
+
+    .hero .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .12);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: none;
+      transition: transform .12s ease, background .12s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, .18);
+      transform: translateY(-1px);
+    }
+
+    .btn.solid {
+      background: white;
+      color: var(--primary);
+      border-color: white;
+    }
+
+    .btn.solid:hover {
+      background: rgba(255, 255, 255, .92);
+    }
+
+    .heroCard {
+      background: rgba(255, 255, 255, .10);
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .20);
+    }
+
+    .heroCard .label {
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .85;
+      margin-bottom: 8px;
+    }
+
+    .heroCard .big {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .heroCard .small {
+      margin: 8px 0 0;
+      opacity: .92;
+      font-size: 14px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255, 255, 255, .22);
+      margin: 14px 0;
+    }
+
+    /* Main layout */
+    main {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 32px;
+    }
+
+    .section {
+      margin-top: 30px;
+      line-height: 1.7;
+    }
+
+    .payment-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 18px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    .payment-box strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+
+    footer .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn {
+        transition: none;
+      }
+
+      .btn:hover {
+        transform: none;
+      }
+    }
+
+    /* add css for image */
+    .heroImage {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    }
+
+    .heroImage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .heroImage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          rgba(155, 150, 106, .15),
+          rgba(155, 150, 106, .25));
+    }
+  
+
+/* Multi-page nav links (replace buttons with anchors) */
+.navlinks a.navbtn {
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, .12);
+  color: white;
+  padding: 10px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .2px;
+  display: inline-flex;
+  align-items: center;
+}
+.navlinks a.navbtn:hover {
+  background: rgba(255, 255, 255, .18);
+  text-decoration: none;
+}
+/* Button-looking links in hero */
+a.btn { text-decoration: none; }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="names">Maria Paula & Mario Miguel</div>
+        <div class="meta">Ecuador • 28 Nov 2026</div>
+      </div>
+      <div class="navlinks">
+        <a class="navbtn" href="index.html">Home</a>
+        <a class="navbtn" href="details.html">Details</a>
+        <a class="navbtn" href="travel.html">Travel</a>
+        <a class="navbtn" href="gallery.html">Gallery</a>
+        <a class="navbtn" href="contact.html">Contact</a>
+        <a class="navbtn" href="registry.html">Registry</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>Registry</h1>
+  
+      <div class="section">
+        <p>
+          Having you with us on our wedding day is the most meaningful gift of all.
+          We are so grateful for your love and support as we begin our life together.
+        </p>
+  
+        <p>
+          If you would like to bless us with an additional gift, a contribution to our honeymoon fund
+          would mean so much to us and help us create lasting memories on our first adventure as newlyweds.
+        </p>
+  
+        <p>
+          You can contribute using the options below:
+        </p>
+      </div>
+  
+      <div class="section">
+  
+        <div class="payment-box">
+          <strong>E-Transfer</strong>
+          xxx@mail.com
+        </div>
+  
+        <div class="payment-box">
+          <strong>Wire Transfer (USA) – IDB</strong>
+          Account #: 1234567<br>
+          Routing #: 9807902
+        </div>
+  
+        <div class="payment-box">
+          <strong>Para transferencias en Ecuador</strong>
+          Banco Guayaquil<br>
+          Tipo de cuenta: Ahorros<br>
+          Numero Cuenta: 12341234<br>
+          Nombre: Nombre Apellido<br>
+          Cedula: 2345234525
+        </div>
+  
+      </div>
+  
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>© 2026–2026 MariaPaula & MarioMiguel • Ecuador</div>
+      
+    </div>
+  </footer>
+
+<script>
+  // Keeping this for any remaining internal anchors you might add later
+  function scrollToId(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+</script>
+
+</body>
+</html>
