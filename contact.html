@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact — Maria Paula & Mario Miguel</title>
   <meta name="description" content="Wedding website for Maria Paula & Mario Miguel — Ecuador 2026" />
   <style>
-
     :root {
       --primary: #9B966A;
       --ink: #2F2E23;
@@ -581,31 +581,139 @@
           rgba(155, 150, 106, .15),
           rgba(155, 150, 106, .25));
     }
-  
 
-/* Multi-page nav links (replace buttons with anchors) */
-.navlinks a.navbtn {
-  border: 1px solid rgba(255, 255, 255, .35);
-  background: rgba(255, 255, 255, .12);
-  color: white;
-  padding: 10px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: .2px;
-  display: inline-flex;
-  align-items: center;
-}
-.navlinks a.navbtn:hover {
-  background: rgba(255, 255, 255, .18);
-  text-decoration: none;
-}
-/* Button-looking links in hero */
-a.btn { text-decoration: none; }
 
+    /* Multi-page nav links (replace buttons with anchors) */
+    .navlinks a.navbtn {
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .12);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .2px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .navlinks a.navbtn:hover {
+      background: rgba(255, 255, 255, .18);
+      text-decoration: none;
+    }
+
+    /* Button-looking links in hero */
+    a.btn {
+      text-decoration: none;
+    }
+
+    /*menu responsive*/
+    /* Hamburger auto-mode (only when header doesn't fit) */
+    .nav {
+      position: relative;
+    }
+
+    .menuBtn {
+      display: none;
+      /* shown only in compact mode */
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+
+    .menuBtn:hover {
+      background: rgba(255, 255, 255, .18);
+    }
+
+    .menuRow {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: nowrap;
+      /* keep it on one row when possible */
+    }
+
+    .mobileMenu {
+      display: none;
+      position: absolute;
+      right: 16px;
+      top: calc(100% + 10px);
+      min-width: 220px;
+      background: #fff;
+      border: 1px solid var(--border, rgba(0, 0, 0, .12));
+      border-radius: 14px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .18);
+      padding: 10px;
+      z-index: 999;
+    }
+
+    .mobileMenu .navbtn {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--ink, #2F2E23);
+      background: transparent;
+      border: 1px solid transparent;
+    }
+
+    .mobileMenu .navbtn:hover {
+      background: rgba(155, 150, 106, .10);
+      border-color: rgba(155, 150, 106, .18);
+      text-decoration: none;
+    }
+
+    /* Compact mode: hide row links, show hamburger */
+    header.is-compact .menuRow {
+      position: absolute;
+      visibility: hidden;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+    }
+
+    header.is-compact .menuBtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* When menu is open */
+    header.menu-open .mobileMenu {
+      display: block;
+    }
+
+    /* Fix hamburger dropdown contrast */
+    header.menu-open .mobileMenu {
+      background: #9B966A;
+      /* dropdown panel */
+      border: 1px solid rgba(255, 255, 255, .25);
+    }
+
+    header.menu-open .mobileMenu .navbtn {
+      color: #fff !important;
+      /* links visible */
+      background: rgba(255, 255, 255, .10);
+      border: 1px solid rgba(255, 255, 255, .18);
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+    }
+
+    header.menu-open .mobileMenu .navbtn:hover {
+      background: rgba(255, 255, 255, .18);
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -614,13 +722,28 @@ a.btn { text-decoration: none; }
         <div class="names">Maria Paula & Mario Miguel</div>
         <div class="meta">Ecuador • 28 Nov 2026</div>
       </div>
-      <div class="navlinks">
-        <a class="navbtn" href="landing.html">Home</a>
-        <a class="navbtn" href="details.html">Details</a>
-        <a class="navbtn" href="travel.html">Travel</a>
-        <a class="navbtn" href="gallery.html">Gallery</a>
-        <a class="navbtn" href="contact.html">Contact</a>
-        <a class="navbtn" href="registry.html">Registry</a>
+      <div class="navlinks" id="navlinks">
+        <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
+          ☰ Menu
+        </button>
+
+        <nav class="menuRow" id="menuRow" aria-label="Primary">
+          <a class="navbtn" href="landing.html">Home</a>
+          <a class="navbtn" href="details.html">Details</a>
+          <a class="navbtn" href="travel.html">Travel</a>
+          <a class="navbtn" href="gallery.html">Gallery</a>
+          <a class="navbtn" href="contact.html">Contact</a>
+          <a class="navbtn" href="registry.html">Registry</a>
+        </nav>
+
+        <div class="mobileMenu" id="mobileMenu" role="menu" aria-label="Mobile menu">
+          <a class="navbtn" href="landing.html" role="menuitem">Home</a>
+          <a class="navbtn" href="details.html" role="menuitem">Details</a>
+          <a class="navbtn" href="travel.html" role="menuitem">Travel</a>
+          <a class="navbtn" href="gallery.html" role="menuitem">Gallery</a>
+          <a class="navbtn" href="contact.html" role="menuitem">Contact</a>
+          <a class="navbtn" href="registry.html" role="menuitem">Registry</a>
+        </div>
       </div>
     </div>
   </header>
@@ -649,14 +772,97 @@ a.btn { text-decoration: none; }
     </div>
   </footer>
 
-<script>
-  // Keeping this for any remaining internal anchors you might add later
-  function scrollToId(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-</script>
+  <script>
+    // Keeping this for any remaining internal anchors you might add later
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    // Menu responsive
+    (function () {
+      const header = document.querySelector("header");
+      const nav = header?.querySelector(".nav");
+      const brand = header?.querySelector(".brand");
+      const menuRow = document.getElementById("menuRow");
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (!header || !nav || !brand || !menuRow || !menuBtn || !mobileMenu) return;
+
+      function closeMenu() {
+        header.classList.remove("menu-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+
+      function toggleMenu() {
+        const isOpen = header.classList.toggle("menu-open");
+        menuBtn.setAttribute("aria-expanded", String(isOpen));
+      }
+
+      // Auto switch to hamburger only when it wraps / doesn't fit
+      let lastCompact = null;
+      let raf = 0;
+
+      // Auto switch to hamburger only when it wraps / doesn't fit
+      function updateCompactMode() {
+        // Debounce to next animation frame to prevent rapid toggling during resize
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+
+          closeMenu();
+
+          // Measure in "expanded" state (so menuRow width is meaningful)
+          header.classList.remove("is-compact");
+
+          const available = nav.clientWidth - brand.offsetWidth - 16; // small buffer
+          const needed = menuRow.scrollWidth;
+
+          // Hysteresis avoids flicker right at the boundary
+          const enterThreshold = 8; // px
+          const exitThreshold = 8;  // px
+
+          let shouldCompact;
+          if (lastCompact === null) {
+            shouldCompact = needed > available;
+          } else if (lastCompact === false) {
+            shouldCompact = needed > (available + enterThreshold);
+          } else {
+            shouldCompact = needed > (available - exitThreshold);
+          }
+
+          header.classList.toggle("is-compact", shouldCompact);
+          lastCompact = shouldCompact;
+        });
+      }
+
+      menuBtn.addEventListener("click", toggleMenu);
+      ("click", toggleMenu);
+
+      // Close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!header.classList.contains("menu-open")) return;
+        const target = e.target;
+        if (target === menuBtn || menuBtn.contains(target)) return;
+        if (mobileMenu.contains(target)) return;
+        closeMenu();
+      });
+
+      // Close on ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+      });
+
+      // Recompute on resize + font load
+      window.addEventListener("resize", updateCompactMode);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(updateCompactMode).catch(() => { });
+      }
+      updateCompactMode();
+    })();
+  </script>
 
 </body>
+
 </html>
