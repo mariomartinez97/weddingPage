@@ -366,20 +366,21 @@
     }
 
     .pill {
-      display: inline-flex;
-      align-items: center;
+      display: flex;
       justify-content: center;
+      align-items: center;
       gap: 10px;
+
       padding: 12px 14px;
       border-radius: 999px;
       border: 1px solid rgba(0, 0, 0, .12);
       background: rgba(0, 0, 0, .02);
-      font-size: .95rem;
-      width: min(520px, 92vw);
-      max-width: 420px;
+
+      width: 100%;
+      /* ✅ key change */
       box-sizing: border-box;
     }
-
+    
     .label {
       font-weight: 750;
       opacity: .85;
@@ -506,17 +507,17 @@
       <div class="paper-stage">
         <article class="paper" aria-live="polite">
           <div class="paper-inner">
-            
+
             <h1 class="paper-invitee invitee-font" id="inviteePaper">Maria Paula</h1>
             <h1 class="paper-invitee invitee-font" id="inviteePaper">&</h1>
             <h1 class="paper-invitee invitee-font" id="inviteePaper">Mario Miguel</h1>
             <p class="paper-body">
               What began as a simple hello became our greatest adventure. Celebrate with us our “I do.”
             </p>
-            
+
             <div class="paper-line"></div>
             <!--<div class="paper-top">Invite You</div>-->
-            
+
 
             <div class="details">
               <div class="pill">
@@ -625,8 +626,8 @@
     });
 
     backBtn.addEventListener("click", () => {
-  window.location.href = "landing.html";
-});
+      window.location.href = "landing.html";
+    });
 
   </script>
 </body>
