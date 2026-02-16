@@ -672,7 +672,11 @@
 
     /* Compact mode: hide row links, show hamburger */
     header.is-compact .menuRow {
-      display: none;
+      position: absolute;
+      visibility: hidden;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
     }
 
     header.is-compact .menuBtn {
@@ -779,19 +783,44 @@
       }
 
       // Auto switch to hamburger only when it wraps / doesn't fit
+      let lastCompact = null;
+      let raf = 0;
+
+      // Auto switch to hamburger only when it wraps / doesn't fit
       function updateCompactMode() {
-        closeMenu();
+        // Debounce to next animation frame to prevent rapid toggling during resize
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          raf = 0;
 
-        // Condition A: the nav row is overflowing horizontally
-        const overflow = nav.scrollWidth > nav.clientWidth + 1;
+          closeMenu();
 
-        // Condition B: the menu row dropped to another line (wrap)
-        const wrapped = menuRow.offsetTop > brand.offsetTop;
+          // Measure in "expanded" state (so menuRow width is meaningful)
+          header.classList.remove("is-compact");
 
-        header.classList.toggle("is-compact", overflow || wrapped);
+          const available = nav.clientWidth - brand.offsetWidth - 16; // small buffer
+          const needed = menuRow.scrollWidth;
+
+          // Hysteresis avoids flicker right at the boundary
+          const enterThreshold = 8; // px
+          const exitThreshold = 8;  // px
+
+          let shouldCompact;
+          if (lastCompact === null) {
+            shouldCompact = needed > available;
+          } else if (lastCompact === false) {
+            shouldCompact = needed > (available + enterThreshold);
+          } else {
+            shouldCompact = needed > (available - exitThreshold);
+          }
+
+          header.classList.toggle("is-compact", shouldCompact);
+          lastCompact = shouldCompact;
+        });
       }
 
       menuBtn.addEventListener("click", toggleMenu);
+("click", toggleMenu);
 
       // Close when clicking outside
       document.addEventListener("click", (e) => {
@@ -812,16 +841,7 @@
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(updateCompactMode).catch(() => { });
       }
-
-      // Also react to layout changes (more reliable)
-      if ("ResizeObserver" in window) {
-        const ro = new ResizeObserver(updateCompactMode);
-        ro.observe(nav);
-        ro.observe(menuRow);
-        ro.observe(brand);
-      }
-
-      updateCompactMode();
+updateCompactMode();
     })();
   </script>
 
