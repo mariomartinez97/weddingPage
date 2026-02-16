@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Details — Maria Paula & Mario Miguel</title>
   <meta name="description" content="Wedding website for Maria Paula & Mario Miguel — Ecuador 2026" />
   <style>
-
     :root {
       --primary: #9B966A;
       --ink: #2F2E23;
@@ -581,28 +581,32 @@
           rgba(155, 150, 106, .15),
           rgba(155, 150, 106, .25));
     }
-  
 
-/* Multi-page nav links (replace buttons with anchors) */
-.navlinks a.navbtn {
-  border: 1px solid rgba(255, 255, 255, .35);
-  background: rgba(255, 255, 255, .12);
-  color: white;
-  padding: 10px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: .2px;
-  display: inline-flex;
-  align-items: center;
-}
-.navlinks a.navbtn:hover {
-  background: rgba(255, 255, 255, .18);
-  text-decoration: none;
-}
-/* Button-looking links in hero */
-a.btn { text-decoration: none; }
+
+    /* Multi-page nav links (replace buttons with anchors) */
+    .navlinks a.navbtn {
+      border: 1px solid rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .12);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .2px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .navlinks a.navbtn:hover {
+      background: rgba(255, 255, 255, .18);
+      text-decoration: none;
+    }
+
+    /* Button-looking links in hero */
+    a.btn {
+      text-decoration: none;
+    }
 
 
     /*menu responsive*/
@@ -708,9 +712,9 @@ a.btn { text-decoration: none; }
       background: rgba(255, 255, 255, .18);
       text-decoration: none;
     }
-
   </style>
 </head>
+
 <body>
 
   <header>
@@ -780,7 +784,8 @@ a.btn { text-decoration: none; }
               <span class="dot"></span>
               <div>
                 <strong>Transportation</strong>
-                <div class="muted">There will be 2 shuttles departing from xxx & xxx. Parking is available at the venue</div>
+                <div class="muted">There will be 2 shuttles departing from xxx & xxx. Parking is available at the venue
+                </div>
               </div>
             </div>
           </div>
@@ -831,15 +836,15 @@ a.btn { text-decoration: none; }
     </div>
   </footer>
 
-<script>
-  // Keeping this for any remaining internal anchors you might add later
-  function scrollToId(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  // Menu responsive
-  (function () {
+  <script>
+    // Keeping this for any remaining internal anchors you might add later
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    // Menu responsive
+    (function () {
       const header = document.querySelector("header");
       const nav = header?.querySelector(".nav");
       const brand = header?.querySelector(".brand");
@@ -897,7 +902,7 @@ a.btn { text-decoration: none; }
       }
 
       menuBtn.addEventListener("click", toggleMenu);
-("click", toggleMenu);
+      ("click", toggleMenu);
 
       // Close when clicking outside
       document.addEventListener("click", (e) => {
@@ -918,9 +923,10 @@ a.btn { text-decoration: none; }
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(updateCompactMode).catch(() => { });
       }
-updateCompactMode();
+      updateCompactMode();
     })();
-</script>
+  </script>
 
 </body>
+
 </html>
